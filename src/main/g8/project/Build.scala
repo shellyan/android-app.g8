@@ -13,10 +13,10 @@ object General {
     platformName in Android := "android-$api_level$"
   )
 
-  lazy val proguardSettings = Seq (
-    useProguard in Android := $useProguard$,
+  lazy val proguardSettings = inConfig(Android) (Seq (
+    useProguard := $useProguard$,
     proguardOptimizations += "-keep class $package$.** { *; }"
-  )
+  ))
 
   lazy val ndkSettings = inConfig(Android) (Seq(
     jniClasses := Seq(),
@@ -39,7 +39,7 @@ object General {
 
 object AndroidBuild extends Build {
   lazy val main = Project (
-    "$name$",
+    "main",
     file("."),
     settings = General.fullAndroidSettings ++ AndroidEclipse.settings
   )
