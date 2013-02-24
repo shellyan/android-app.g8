@@ -5,6 +5,7 @@ import AndroidKeys._
 import AndroidNdkKeys._
 
 object General {
+  // Some basic configuration
   val settings = Defaults.defaultSettings ++ Seq (
     name := "$name$",
     version := "0.1",
@@ -13,23 +14,24 @@ object General {
     platformName in Android := "android-$api_level$"
   )
 
+  // Default Proguard settings
   lazy val proguardSettings = inConfig(Android) (Seq (
     useProguard := $useProguard$,
     proguardOptimizations += "-keep class $package$.** { *; }"
   ))
 
-  lazy val ndkSettings = inConfig(Android) (Seq(
+  // Example NDK settings
+  lazy val ndkSettings = AndroidNdk.settings ++ inConfig(Android) (Seq(
     jniClasses := Seq(),
     javahOutputFile := Some(new File("native.h"))
   ))
 
+  // Full Android settings
   lazy val fullAndroidSettings =
     General.settings ++
     AndroidProject.androidSettings ++
-    AndroidNdk.settings ++
     TypedResources.settings ++
     proguardSettings ++
-    ndkSettings ++
     AndroidManifestGenerator.settings ++
     AndroidMarketPublish.settings ++ Seq (
       keyalias in Android := "change-me",
