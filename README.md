@@ -10,7 +10,7 @@ To use this template, g8 needs to be installed first. Read g8's
 
 All done? Now fire up your favorite shell and enter
 
-    g8 jberkel/android-app
+    g8 fxthomas/android-app
     cd <name-of-app>
     sbt android:package-debug
 
@@ -23,6 +23,13 @@ Your android sbt project contains 2 subprojects:
     * Activity.scala (the "hello world" activity)
 * TestProject (tests)
     * Integration tests, see [Android Testing](http://developer.android.com/guide/topics/testing/index.html)
+
+Included (for free!) is integration with Eclipse, just run `sbt eclipse` to
+create the Eclipse project, with :
+
+  * Scala IDE
+  * ADT plugin
+  * [AndroidProguardScala](http://github.com/banshee/AndroidProguardScala)
 
 ## Installing & Running
 
