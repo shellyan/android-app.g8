@@ -11,7 +11,6 @@ import com.typesafe.sbteclipse.plugin.EclipsePlugin.{
   EclipseCreateSrc,
   EclipseTransformerFactory}
 import com.typesafe.sbteclipse.core.Validation
-import com.typesafe.sbteclipse.core.Eclipse.eclipseCommand
 import EclipseKeys._
 
 // Import Scala XML
@@ -202,7 +201,6 @@ object AndroidEclipse {
   // Set default settings
   lazy val settings = Seq (
     classpathTransformerFactories := Seq(),
-    projectTransformerFactories := Seq(),
-    eclipseCommand <<= eclipseCommand dependsOn (generateTypedResources)
+    projectTransformerFactories := Seq()
   ) ++ outputSettings ++ naturesSettings
 }
