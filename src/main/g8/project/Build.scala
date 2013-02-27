@@ -43,14 +43,14 @@ object AndroidBuild extends Build {
   lazy val main = Project (
     "main",
     file("."),
-    settings = General.fullAndroidSettings ++ AndroidEclipse.settings
+    settings = General.fullAndroidSettings ++ AndroidEclipseDefaults.settings
   )
 
   lazy val tests = Project (
     "tests",
     file("tests"),
     settings = General.settings ++
-               AndroidEclipse.settings ++
+               AndroidEclipseDefaults.settings ++
                AndroidTest.androidSettings ++
                General.proguardSettings ++ Seq (
       name := "$name$Tests"
