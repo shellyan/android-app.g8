@@ -1,7 +1,11 @@
 # Android App in Scala
 
 [giter8](http://github.com/n8han/giter8) template to get an Android
-sbt project up and running in a matter of seconds
+sbt project up and running in a matter of seconds.
+
+Originally from
+[jberkel/android-app.g8](http://github.com/jberkel/android-app.g8), modified to
+accomodate Eclipse project generation.
 
 ## How to use
 
@@ -14,6 +18,13 @@ All done? Now fire up your favorite shell and enter
     cd <name-of-app>
     sbt android:package-debug
 
+Alternatively, generate an Eclipse project, import it within Eclipse and click
+_Run_ :
+
+    g8 fxthomas/android-app
+    cd <name-of-app>
+    sbt eclipse
+
 ## What you get
 
 Your android sbt project contains 2 subprojects:
@@ -24,12 +35,15 @@ Your android sbt project contains 2 subprojects:
 * TestProject (tests)
     * Integration tests, see [Android Testing](http://developer.android.com/guide/topics/testing/index.html)
 
-Included (for free!) is integration with Eclipse, just run `sbt eclipse` to
-create the Eclipse project, with :
+Included (for free!) is integration with Eclipse. You need these plugins to use
+the generated projects :
 
   * Scala IDE
   * ADT plugin
   * [AndroidProguardScala](http://github.com/banshee/AndroidProguardScala)
+
+You should be able to use both SBT and Eclipse at the same time. If not, create
+an issue on GitHub.
 
 ## Installing & Running
 
