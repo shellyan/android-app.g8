@@ -82,7 +82,18 @@ object AndroidEclipseDefaults {
       new Transformer[ClasspathContainer]("classpath", TransformType.Append, Seq(
         "com.android.ide.eclipse.adt.LIBRARIES"
       ))
-    )
+    ),
+
+    // Remove R.java from the managed sources
+    //  (clashes with the Eclipse-generated R.java)
+    classpathTransformerFactories <++=
+      (managedSourceDirectories in Compile) {
+        m => m map {
+          path => new ClasspathExclusion(
+            "src", path, Seq("**/R.java")
+          )
+        }
+      }
   )
 
   // Set default settings
