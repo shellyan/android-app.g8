@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="$package$">
 
+    <uses-sdk android:minSdkVersion="$api_level$"/>
+
     <application
         android:icon="@drawable/android:star_big_on"
         android:label="@string/app_name"
@@ -13,6 +15,4 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-sdk android:minSdkVersion="$api_level$"/>
 </manifest>
