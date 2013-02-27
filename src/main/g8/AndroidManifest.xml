@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="$package$">
 
-    <uses-sdk android:minSdkVersion="$api_level$"/>
+    <uses-sdk
+        android:minSdkVersion="$min_api_level$"
+        android:targetSdkVersion="$api_level$"/>
 
     <application
         android:icon="@drawable/android:star_big_on"
