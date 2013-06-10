@@ -3,7 +3,7 @@ import sbt._
 import Keys._
 
 // Import Android plugin
-import AndroidKeys._
+import sbtandroid.AndroidPlugin._
 
 // Import Eclipse plugin
 import com.typesafe.sbteclipse.plugin._
@@ -47,15 +47,15 @@ object AndroidEclipseDefaults {
     },
 
     // Resources, assets and manifest must be at the project root directory
-    mainResPath in Android <<=
-      (baseDirectory, resDirectoryName in Android) (_ / _) map (x=>x),
-    mainAssetsPath in Android <<=
-      (baseDirectory, assetsDirectoryName in Android) (_ / _),
-    manifestPath in Android <<=
-      (baseDirectory, manifestName in Android) map ((b,m) => Seq(b / m)) map (x=>x),
+    mainResPath <<=
+      (baseDirectory, resDirectoryName) (_ / _) map (x=>x),
+    mainAssetsPath <<=
+      (baseDirectory, assetsDirectoryName) (_ / _),
+    manifestPath <<=
+      (baseDirectory, manifestName) map ((b,m) => Seq(b / m)) map (x=>x),
 
-    // 
-    preTasks := Seq(generateTypedResources in Android)
+    // Generate typed resources first
+    preTasks := Seq(generateTypedResources)
   )
 
   lazy val naturesSettings = Seq(
@@ -101,8 +101,8 @@ object AndroidEclipseDefaults {
 
   // Set default settings
   lazy val settings = Seq (
-    classpathTransformerFactories := Seq(),
-    projectTransformerFactories := Seq()
+    classpathTransformerFactories := Seq.empty,
+    projectTransformerFactories := Seq.empty
   ) ++ outputSettings ++ naturesSettings
 
 }
